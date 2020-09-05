@@ -18,34 +18,61 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Text("Popular",style: TextStyle(fontWeight: FontWeight.w900)),
-                Text("See all",style: TextStyle(color: Colors.pink,fontWeight: FontWeight.w700)),
+                Text("Popular", style: TextStyle(fontWeight: FontWeight.w900)),
+                Text("See all", style: TextStyle(color: Colors.pink, fontWeight: FontWeight.w700)),
               ],
             ),
           ),
-          SizedBox(height: 10),
+          SizedBox(height: 15),
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: SizedBox(
-              height: MediaQuery.of(context).size.height/4.25,
-              child: ListView.separated(separatorBuilder:(context,index)=>SizedBox(width: 15) ,
+              height: MediaQuery.of(context).size.height / 4.25,
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(width: 15),
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemCount: 5,
-                itemBuilder: (context,index){
-                  return listViewItem(index);
+                itemBuilder: (context, index) {
+                  return listViewItemPopular(index);
                 },
               ),
             ),
           ),
-          SizedBox(height: 40,),
-
+          SizedBox(
+            height: 40,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Text("Categories", style: TextStyle(fontWeight: FontWeight.w900)),
+              ],
+            ),
+          ),
+          SizedBox(height: 15,),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height / 12,
+              child: ListView.separated(
+                separatorBuilder: (context, index) => SizedBox(width: 15),
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: 5,
+                itemBuilder: (context, index) {
+                  return listViewItemCategories(index);
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
   }
 
-  headerWidget(){
+  headerWidget() {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 3.5,
@@ -59,17 +86,22 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           Text(
             "Your Location",
-            style: TextStyle( color: Colors.white, fontWeight: FontWeight.w500),
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
           ),
           SizedBox(height: 7),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Icon(Icons.location_on,color: Colors.white,size: 18,),
-              SizedBox(width:5),
+              Icon(
+                Icons.location_on,
+                color: Colors.white,
+                size: 18,
+              ),
+              SizedBox(width: 5),
               Text(
                 "Oran, Algeria",
-                style: TextStyle(letterSpacing: 2.0,fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    letterSpacing: 2.0, fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -78,19 +110,18 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  listViewItem(int index){
+  listViewItemPopular(int index) {
     return Container(
-
-      width: MediaQuery.of(context).size.width/1.25,
+      width: MediaQuery.of(context).size.width / 1.25,
       height: MediaQuery.of(context).size.height / 4.25,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
               image: NetworkImage(
                   "https://content.r9cdn.net/rimg/himg/e0/47/1b/hotelsdotcom-774079552-93a44910_w-775528.jpg?crop=true&width=500&height=350"),
               fit: BoxFit.fill)),
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20,0,20,15),
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
@@ -101,22 +132,44 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Text(
                   "50\$",
-                  style: TextStyle(letterSpacing: 2.0,fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      letterSpacing: 2.0, fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Text(
                   "Your Location",
-                  style: TextStyle( color: Colors.white, fontWeight: FontWeight.w500),
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
                 ),
-
               ],
             ),
-            Icon(Icons.arrow_forward,color: Colors.white,size: 24,),
+            Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+              size: 24,
+            ),
           ],
         ),
       ),
     );
   }
+  listViewItemCategories(int index) {
+    return Container(
+      width: MediaQuery.of(context).size.width / 2.25,
+      height: MediaQuery.of(context).size.height / 12,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          image: DecorationImage(
+              image: NetworkImage(
+                  "https://content.r9cdn.net/rimg/himg/e0/47/1b/hotelsdotcom-774079552-93a44910_w-775528.jpg?crop=true&width=500&height=350"),
+              fit: BoxFit.fill)),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Text(
+            "Activity",
+            style: TextStyle(letterSpacing: 1.5,color: Colors.white, fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    );
+  }
 }
-
-
-
