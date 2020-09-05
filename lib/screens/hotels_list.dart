@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
+import 'dart:convert';
 
 class Hotels_List extends StatefulWidget {
   @override
@@ -7,6 +8,9 @@ class Hotels_List extends StatefulWidget {
 }
 
 class _Hotels_ListState extends State<Hotels_List> {
+  List hotelsList = [];
+  List popularList= [];
+  List recommendList = [];
   Future<void> getHotels() async {
     Response response = await get(
         "https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=293919&adults=1&checkin=2020-10-15&rooms=1&nights=2",
@@ -14,6 +18,25 @@ class _Hotels_ListState extends State<Hotels_List> {
           "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
           "x-rapidapi-key": "ac4e5d787emsh6696682a7764cfep1000b9jsna60f5676c20f",
         });
+    Map hotels = jsonDecode(response.body);
+    hotelsList = hotels["data"];
+    popularList = hotelsList.sublist(0,10);
+    recommendList = hotelsList.sublist(10,20);
+    print(recommendList);
+
+  }
+
+  hotelApiCall() async{
+    await getHotels();
+    setState(() {
+
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    hotelApiCall();
   }
 
   @override
@@ -77,7 +100,7 @@ class _Hotels_ListState extends State<Hotels_List> {
                   separatorBuilder: (context, index) => SizedBox(width: 15),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  itemCount: popularList.length,
                   itemBuilder: (context, index) {
                     return listViewItemPopular(index);
                   },
@@ -189,7 +212,8 @@ class _Hotels_ListState extends State<Hotels_List> {
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
               image: NetworkImage(
-                  "https://content.r9cdn.net/rimg/himg/e0/47/1b/hotelsdotcom-774079552-93a44910_w-775528.jpg?crop=true&width=500&height=350"),
+                popularList[index]["photo"]["images"]["medium"]["url"].toString()
+              ),
               fit: BoxFit.fill)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
@@ -202,13 +226,17 @@ class _Hotels_ListState extends State<Hotels_List> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  "50\$",
+                  popularList[index]["price"].toString(),
                   style: TextStyle(
                       letterSpacing: 2.0, fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  "Your Location",
-                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 1.6 ,
+                  child: Text(
+                    popularList[index]["name"].toString(),
+                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
