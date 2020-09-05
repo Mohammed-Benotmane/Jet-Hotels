@@ -281,7 +281,7 @@ class _Hotels_ListState extends State<Hotels_List> {
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
               image: NetworkImage(
-                  "https://content.r9cdn.net/rimg/himg/e0/47/1b/hotelsdotcom-774079552-93a44910_w-775528.jpg?crop=true&width=500&height=350"),
+                  recommendList[index]["photo"]["images"]["medium"]["url"].toString()),
               fit: BoxFit.fill)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
@@ -294,12 +294,12 @@ class _Hotels_ListState extends State<Hotels_List> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(
-                  "50\$",
+                  recommendList[index]["price"],
                   style: TextStyle(
                       letterSpacing: 2.0, fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "Your Location",
+                  recommendList[index]["name"],
                   style: TextStyle(fontSize: 11, color: Colors.white, fontWeight: FontWeight.w500),
                 ),
               ],
