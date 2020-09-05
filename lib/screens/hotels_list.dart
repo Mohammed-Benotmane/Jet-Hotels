@@ -9,8 +9,9 @@ class Hotels_List extends StatefulWidget {
 
 class _Hotels_ListState extends State<Hotels_List> {
   List hotelsList = [];
-  List popularList= [];
+  List popularList = [];
   List recommendList = [];
+
   Future<void> getHotels() async {
     Response response = await get(
         "https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=293919&adults=1&checkin=2020-10-15&rooms=1&nights=2",
@@ -20,17 +21,14 @@ class _Hotels_ListState extends State<Hotels_List> {
         });
     Map hotels = jsonDecode(response.body);
     hotelsList = hotels["data"];
-    popularList = hotelsList.sublist(0,10);
-    recommendList = hotelsList.sublist(10,20);
+    popularList = hotelsList.sublist(0, 10);
+    recommendList = hotelsList.sublist(10, 20);
     print(recommendList);
-
   }
 
-  hotelApiCall() async{
+  hotelApiCall() async {
     await getHotels();
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -126,7 +124,7 @@ class _Hotels_ListState extends State<Hotels_List> {
                   separatorBuilder: (context, index) => SizedBox(width: 15),
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  itemCount: 4,
                   itemBuilder: (context, index) {
                     return listViewItemCategories(index);
                   },
@@ -173,7 +171,7 @@ class _Hotels_ListState extends State<Hotels_List> {
       decoration: BoxDecoration(
           image: DecorationImage(
               image: NetworkImage(
-                  "https://content.r9cdn.net/rimg/himg/e0/47/1b/hotelsdotcom-774079552-93a44910_w-775528.jpg?crop=true&width=500&height=350"),
+                  "https://thumbnails.trvl-media.com/T13T6Xjd9VcTdlOIevad6mqpj7I=/773x530/smart/filters:quality(60)/images.trvl-media.com/hotels/33000000/32670000/32661200/32661112/f0212e0c_z.jpg"),
               fit: BoxFit.fill)),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -211,9 +209,7 @@ class _Hotels_ListState extends State<Hotels_List> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-              image: NetworkImage(
-                popularList[index]["photo"]["images"]["medium"]["url"].toString()
-              ),
+              image: NetworkImage(popularList[index]["photo"]["images"]["medium"]["url"].toString()),
               fit: BoxFit.fill)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
@@ -231,7 +227,7 @@ class _Hotels_ListState extends State<Hotels_List> {
                       letterSpacing: 2.0, fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.6 ,
+                  width: MediaQuery.of(context).size.width / 1.6,
                   child: Text(
                     popularList[index]["name"].toString(),
                     style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
@@ -250,22 +246,26 @@ class _Hotels_ListState extends State<Hotels_List> {
       ),
     );
   }
+  List<Color> colors = [Color(0xFF7FBC6E),Color(0xFFC1E7E8),Color(0xFFFD4867),Color(0xFF8E8CD8)];
+  List<String> categories = ["Country Side","Beach","Romantic","Downtown"];
+  List<Icon> icons = [Icon(Icons.home,color: Colors.white),Icon(Icons.beach_access,color: Colors.white),Icon(Icons.favorite,color: Colors.white),Icon(Icons.train,color: Colors.white)];
 
   listViewItemCategories(int index) {
     return Container(
       width: MediaQuery.of(context).size.width / 2.25,
       height: MediaQuery.of(context).size.height / 12,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          image: DecorationImage(
-              image: NetworkImage(
-                  "https://content.r9cdn.net/rimg/himg/e0/47/1b/hotelsdotcom-774079552-93a44910_w-775528.jpg?crop=true&width=500&height=350"),
-              fit: BoxFit.fill)),
-      child: Column(
+        color: colors[index],
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          icons[index],
+          SizedBox(width: 7),
           Text(
-            "Activity",
+            categories[index],
             style: TextStyle(letterSpacing: 1.5, color: Colors.white, fontWeight: FontWeight.w500),
           ),
         ],
@@ -280,8 +280,7 @@ class _Hotels_ListState extends State<Hotels_List> {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-              image: NetworkImage(
-                  recommendList[index]["photo"]["images"]["medium"]["url"].toString()),
+              image: NetworkImage(recommendList[index]["photo"]["images"]["medium"]["url"].toString()),
               fit: BoxFit.fill)),
       child: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
@@ -298,9 +297,13 @@ class _Hotels_ListState extends State<Hotels_List> {
                   style: TextStyle(
                       letterSpacing: 2.0, fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                 ),
-                Text(
-                  recommendList[index]["name"],
-                  style: TextStyle(fontSize: 11, color: Colors.white, fontWeight: FontWeight.w500),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width / 2.5,
+                  child: Text(
+                    recommendList[index]["name"].toString(),
+                    style: TextStyle(fontSize: 11,color: Colors.white, fontWeight: FontWeight.w500),
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ],
             ),
