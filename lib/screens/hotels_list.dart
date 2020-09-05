@@ -12,7 +12,41 @@ class _Hotels_ListState extends State<Hotels_List> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            headerWidget(),
+            Stack(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 25),
+                  child: headerWidget(),
+                ),
+                Positioned(
+                  bottom: 0,
+                  right: 40,
+                  left: 40,
+                  child: Container(
+                    child: Material(
+                      borderRadius: BorderRadius.circular(25),
+                      elevation: 7,
+                      child: TextField(
+                        onChanged: (text) {},
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search),
+                          hintText: "Search",
+                          fillColor: Colors.white,
+                          filled: true,
+                          enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(25)),
+                          focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: Colors.white),
+                              borderRadius: BorderRadius.circular(25)),
+                        ),
+                      ),
+                    ),
+                    width: MediaQuery.of(context).size.width * .8,
+                  ),
+                ),
+              ],
+            ),
             SizedBox(height: 50),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -70,9 +104,10 @@ class _Hotels_ListState extends State<Hotels_List> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text("Recommend", style: TextStyle(fontWeight: FontWeight.w900)),
+                  Text("See all", style: TextStyle(color: Colors.pink, fontWeight: FontWeight.w700)),
                 ],
               ),
             ),
@@ -97,6 +132,7 @@ class _Hotels_ListState extends State<Hotels_List> {
       ),
     );
   }
+
   headerWidget() {
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -226,7 +262,7 @@ class _Hotels_ListState extends State<Hotels_List> {
                 ),
                 Text(
                   "Your Location",
-                  style: TextStyle(fontSize: 11,color: Colors.white, fontWeight: FontWeight.w500),
+                  style: TextStyle(fontSize: 11, color: Colors.white, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
