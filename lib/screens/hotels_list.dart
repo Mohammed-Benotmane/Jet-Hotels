@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 class Hotels_List extends StatefulWidget {
   @override
@@ -6,6 +7,15 @@ class Hotels_List extends StatefulWidget {
 }
 
 class _Hotels_ListState extends State<Hotels_List> {
+  Future<void> getHotels() async {
+    Response response = await get(
+        "https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=293919&adults=1&checkin=2020-10-15&rooms=1&nights=2",
+        headers: {
+          "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
+          "x-rapidapi-key": "ac4e5d787emsh6696682a7764cfep1000b9jsna60f5676c20f",
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
