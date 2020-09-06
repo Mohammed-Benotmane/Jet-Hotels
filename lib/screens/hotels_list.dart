@@ -283,45 +283,52 @@ class _Hotels_ListState extends State<Hotels_List> {
   }
 
   listViewItemRecommend(int index) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 1.65,
-      height: MediaQuery.of(context).size.height / 6,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
-              image: NetworkImage(recommendList[index]["photo"]["images"]["medium"]["url"].toString()),
-              fit: BoxFit.fill)),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  recommendList[index]["price"],
-                  style: TextStyle(
-                      letterSpacing: 2.0, fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 2.5,
-                  child: Text(
-                    recommendList[index]["name"].toString(),
-                    style: TextStyle(fontSize: 11,color: Colors.white, fontWeight: FontWeight.w500),
-                    overflow: TextOverflow.ellipsis,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return HotelDetail(hotel: recommendList[index],);
+        }));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 1.65,
+        height: MediaQuery.of(context).size.height / 6,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+                image: NetworkImage(recommendList[index]["photo"]["images"]["medium"]["url"].toString()),
+                fit: BoxFit.fill)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    recommendList[index]["price"],
+                    style: TextStyle(
+                        letterSpacing: 2.0, fontSize: 16, color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
-            ),
-            Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-              size: 24,
-            ),
-          ],
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 2.5,
+                    child: Text(
+                      recommendList[index]["name"].toString(),
+                      style: TextStyle(fontSize: 11,color: Colors.white, fontWeight: FontWeight.w500),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+                size: 24,
+              ),
+            ],
+          ),
         ),
       ),
     );
