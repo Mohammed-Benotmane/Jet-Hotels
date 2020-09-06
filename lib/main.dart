@@ -6,6 +6,6 @@ import 'package:jethotels/screens/hotels_list.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: HotelDetail(),
+    home: HomePage(),
   ));
 }

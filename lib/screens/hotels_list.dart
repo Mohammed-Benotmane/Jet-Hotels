@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'dart:convert';
 
+import 'package:jethotels/screens/hotel_detail.dart';
+
 class Hotels_List extends StatefulWidget {
   @override
   _Hotels_ListState createState() => _Hotels_ListState();
@@ -23,7 +25,7 @@ class _Hotels_ListState extends State<Hotels_List> {
     hotelsList = hotels["data"];
     popularList = hotelsList.sublist(0, 10);
     recommendList = hotelsList.sublist(10, 20);
-    print(recommendList);
+
   }
 
   hotelApiCall() async {
@@ -203,45 +205,52 @@ class _Hotels_ListState extends State<Hotels_List> {
   }
 
   listViewItemPopular(int index) {
-    return Container(
-      width: MediaQuery.of(context).size.width / 1.25,
-      height: MediaQuery.of(context).size.height / 4.25,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          image: DecorationImage(
-              image: NetworkImage(popularList[index]["photo"]["images"]["medium"]["url"].toString()),
-              fit: BoxFit.fill)),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                Text(
-                  popularList[index]["price"].toString(),
-                  style: TextStyle(
-                      letterSpacing: 2.0, fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width / 1.6,
-                  child: Text(
-                    popularList[index]["name"].toString(),
-                    style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
-                    overflow: TextOverflow.ellipsis,
+    return GestureDetector(
+      onTap: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context){
+          return HotelDetail(hotel: popularList[index],);
+        }));
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width / 1.25,
+        height: MediaQuery.of(context).size.height / 4.25,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(
+                image: NetworkImage(popularList[index]["photo"]["images"]["medium"]["url"].toString()),
+                fit: BoxFit.fill)),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: <Widget>[
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text(
+                    popularList[index]["price"].toString(),
+                    style: TextStyle(
+                        letterSpacing: 2.0, fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
                   ),
-                ),
-              ],
-            ),
-            Icon(
-              Icons.arrow_forward,
-              color: Colors.white,
-              size: 24,
-            ),
-          ],
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.6,
+                    child: Text(
+                      popularList[index]["name"].toString(),
+                      style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+              Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+                size: 24,
+              ),
+            ],
+          ),
         ),
       ),
     );
