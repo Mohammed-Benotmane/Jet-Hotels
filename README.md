@@ -22,3 +22,10 @@ Feel free to fork this project and add whatever you like. If you have any sugges
 ## Team:
 [Jetlighters](https://github.com/JetLightStudio) having fun.
 
+* [Install Flutter](https://flutter.dev/get-started/)
+* [Flutter documentation](https://flutter.dev/docs)
+
+For announcements about new releases and breaking changes, follow the
+[flutter-announce@googlegroups.com](https://groups.google.com/forum/#!forum/flutter-announce)
+mailing list.
+
