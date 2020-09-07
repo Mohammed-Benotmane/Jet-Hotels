@@ -1,16 +1,26 @@
-# jethotels
+# Jet-Hotels
 
-A new Flutter application.
+![GitHub license](https://img.shields.io/github/license/Mohammed-Benotmane/Tower-Defense-Game.svg)
+![Jetlight studio](https://img.shields.io/badge/Made%20by-Jetlight%20studio-blue.svg?color=082544)
 
-## Getting Started
+## Description:
 
-This project is a starting point for a Flutter application.
+This is the first app of my challenge (One day, One app), It's a Hotel Application.
 
-A few resources to get you started if this is your first Flutter project:
+### API Link:
+(https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=293919&adults=1&checkin=2020-10-15&rooms=1&nights=2)
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## ScreenShots:
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## Tools & languages:
+* Android studio (IDE)
+* Dart (logic)
+* Flutter (Mobile UI developement kit)
+
+## Contribution:
+Feel free to fork this project and add whatever you like. If you have any suggestions or any comments please feel free to contact me or to open an issue.
+
+## Team:
+[Jetlighters](https://github.com/JetLightStudio) having fun.
+
