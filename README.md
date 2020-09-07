@@ -5,7 +5,7 @@
 
 ## Description:
 
-This is the first app of my challenge (One day, One app), It's a Flutter Application that use a hotel [API](https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=293919&adults=1&checkin=2020-10-15&rooms=1&nights=2) to display hotels and their information.
+This is the first app of my challenge (One week challenge), It's a Flutter Application that use a hotel [API](https://tripadvisor1.p.rapidapi.com/hotels/list?location_id=293919&adults=1&checkin=2020-10-15&rooms=1&nights=2) to display hotels and their information.
 
 ## ScreenShots:
 
