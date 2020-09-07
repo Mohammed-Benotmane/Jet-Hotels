@@ -12,6 +12,7 @@ This is the first app of my challenge (One day, One app), It's a Hotel Applicati
 
 ## ScreenShots:
 
+<img src="screenshots/home.jpg" width="200" /> <img src="screenshots/detail.jpg" width="200" />
 
 ## Tools & languages:
 * Android studio (IDE)
