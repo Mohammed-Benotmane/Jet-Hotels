@@ -30,3 +30,6 @@ For announcements about new releases and breaking changes, follow the
 [flutter-announce@googlegroups.com](https://groups.google.com/forum/#!forum/flutter-announce)
 mailing list.
 
+## Special thanks:
+Design inspired by [this](https://www.pinterest.com/pin/412079434656327833/) UI
+
