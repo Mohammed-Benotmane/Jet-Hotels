@@ -11,6 +11,11 @@ This is the first app of my challenge (One week challenge), It's a Flutter Appli
 
 <img src="screenshots/home.jpg" width="200" /> <img src="screenshots/detail.jpg" width="200" />
 
+## Challenge:
+* [Day 1: JetHotels](https://github.com/Mohammed-Benotmane/Jet-Hotels)
+* [Day 2: JetCoffeeShop](https://github.com/Mohammed-Benotmane/Jet-Coffee-Shop)
+* [Day 3: JetArt](https://github.com/Mohammed-Benotmane/Jet-Art)
+
 ## Tools & languages:
 * Android studio (IDE)
 * Dart (logic)
